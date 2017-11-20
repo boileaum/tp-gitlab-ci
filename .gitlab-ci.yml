@@ -3,4 +3,3 @@ helloworld:
     - shell, specific
   script:
     - echo "hello, world"
-    - echo "bonjour, monde"
