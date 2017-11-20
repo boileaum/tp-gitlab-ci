@@ -1,6 +1,6 @@
 helloworld:
   tags:
-    - shell, docker
+    - shell, docker, specific
   script:
     - echo "hello, world"
 
