@@ -1,4 +1,0 @@
-colorlog
-numpy
-pytest
-pythran

@@ -1,47 +1,6 @@
-stages:
-  - build
-  - test
-  - release
-
-variables:
-  CONTAINER_TEST_IMAGE: boileaum/rosen:$CI_COMMIT_REF_NAME
-  CONTAINER_RELEASE_IMAGE: boileaum/rosen:latest
-
-before_script:
-  - echo $DOCKERHUB_PASSWD | docker login -u boileaum --password-stdin
-
-b:docker:
-  stage: build
+helloworld:
   tags:
     - shell, docker
   script:
-    - docker build --pull -t $CONTAINER_TEST_IMAGE -f ./docker/Dockerfile-rosen .
-    - docker push $CONTAINER_TEST_IMAGE
-
-t:helloworld:
-  stage: test
-  tags:
-    - shell, docker
-  script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker run $CONTAINER_TEST_IMAGE /bin/bash -c 'python test_helloworld.py'
-
-t:rosen:
-  stage: test
-  tags:
-    - shell, docker
-  script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker run $CONTAINER_TEST_IMAGE /bin/bash -c 'pytest -v'
-
-r:docker:
-  stage: release
-  tags:
-    - shell, docker
-  script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
-    - docker push $CONTAINER_RELEASE_IMAGE
-  only:
-    - master
+    - echo "hello, world"
 
