@@ -14,5 +14,6 @@ t:docker:
   tags:
     - shell, docker
   script:
+    - docker build --pull -t boileaum/rosen:latest -f ./docker/Dockerfile-rosen .
     - docker run boileaum/rosen /bin/bash -c 'pytest -v'
 
