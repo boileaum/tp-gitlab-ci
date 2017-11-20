@@ -1,9 +1,10 @@
-.PHONY: clean
-
 all: helloworld
 
 helloworld:
-	  gcc helloworld.c -o helloworld.e
+	  cc helloworld.c -o helloworld.e
+
+test: helloworld
+	  python test_helloworld.py
 
 clean:
 	  rm -rf *.o *.e *.so *.pyf *.pyc __pycache__
