@@ -1,5 +1,7 @@
+.ipynb_checkpoints/
+*.slides.html
 .bash_history
 .cache
-__pycache__
+__pycache__/
 *.so
 *.e
