@@ -6,7 +6,7 @@ variables:
   CONTAINER_TEST_IMAGE: boileaum/rosen:latest
 
 before_script:
-  - docker login -u boileaum -p $DOCKERHUB_PASSWD
+  - echo $DOCKERHUB_PASSWD | docker login -u boileaum --password-stdin
 
 b:docker:
   stage: build
