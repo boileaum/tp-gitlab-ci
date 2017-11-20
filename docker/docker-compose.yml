@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  env:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-pythran
+    image: boileaum/pythran:latest
+
+  user:
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile-rosen
+    image: boileaum/rosen:latest
+    depends_on:
+      - env
+

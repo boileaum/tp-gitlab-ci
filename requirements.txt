@@ -1,0 +1,4 @@
+colorlog
+numpy
+pytest
+pythran
