@@ -1,18 +1,6 @@
-stages:
-  - build
-  - test
-
 build_hello:
   stage: build
   tags:
     - shell
   script:
     - make
-
-test_hello:
-  stage: test
-  tags:
-    - shell
-  script:
-    - make test
-
