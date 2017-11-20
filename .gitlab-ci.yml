@@ -45,3 +45,15 @@ r:docker:
   only:
     - master
 
+pages:
+  tags:
+    - pages, docker
+  script:
+    - mkdir public
+    - ./make_slides.sh
+  artifacts:
+    paths:
+      - public
+  only:
+    - pages
+
