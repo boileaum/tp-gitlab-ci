@@ -5,14 +5,14 @@ stages:
 build_hello:
   stage: build
   tags:
-    - shell, docker
+    - shell
   script:
     - make
 
 test_hello:
   stage: test
   tags:
-    - shell, docker
+    - shell
   script:
     - make test
 
