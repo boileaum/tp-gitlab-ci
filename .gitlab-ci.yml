@@ -1,0 +1,18 @@
+stages:
+  - build
+  - test
+
+b:docker:
+  stage: build
+  tags:
+    - shell, docker
+  script:
+    - docker build --pull -t boileaum/rosen:latest -f ./docker/Dockerfile-rosen .
+
+t:docker:
+  stage: test
+  tags:
+    - shell, docker
+  script:
+    - docker run boileaum/rosen /bin/bash -c 'pytest -v'
+
