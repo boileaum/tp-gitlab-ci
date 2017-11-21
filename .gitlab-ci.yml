@@ -1,5 +1,5 @@
 stages:
-e - build
+  - build
   - test
   - release
 
