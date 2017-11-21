@@ -6,3 +6,4 @@ helloworld:
     - echo "bonjour, monde"
     - echo "bonjour, monde"
     - echo "bonjour, monde"
+    - echo "bonjour, monde"
