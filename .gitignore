@@ -6,3 +6,4 @@ __pycache__/
 *.so
 *.e
 public/
+archive/

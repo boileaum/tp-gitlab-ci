@@ -5,6 +5,7 @@ pages:
   script:
     - mkdir public
     - ./make_slides.sh
+    - ./make_archive.sh
   artifacts:
     paths:
       - public
