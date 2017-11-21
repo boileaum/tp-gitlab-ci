@@ -1,6 +1,6 @@
-helloworld:
+build_hello:
+  stage: build
   tags:
-    - shell, specific
+    - shell
   script:
-    - echo "hello, world"
-    - echo "bonjour, monde"
+    - make
