@@ -1,6 +1,8 @@
 # TP GitLab CI
 
-## Execution du notebook jupyter
+Le contenu de cette session pratique est publié sur cette [page](https://boileau.pages.math.unistra.fr/tp-gitlab-ci/).
+
+### Execution du notebook jupyter
 
 - [Installer Anaconda](https://www.anaconda.com/download) pour disposer de `jupyter-notebook`
 - Ajouter le support du noyau bash :
