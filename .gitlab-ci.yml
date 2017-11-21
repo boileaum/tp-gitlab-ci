@@ -3,4 +3,8 @@ helloworld:
     - shell, specific
   script:
     - echo "hello, world"
+<<<<<<< HEAD
+    - echo "bonjour, monde"
+=======
+>>>>>>> c424feb... Clean .gitlab-ci.yml
     - echo "bonjour, monde"
