@@ -4,3 +4,4 @@ helloworld:
   script:
     - echo "hello, world"
     - echo "bonjour, monde"
+    - echo "bonjour, monde"
