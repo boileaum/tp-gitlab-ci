@@ -4,6 +4,10 @@ helloworld:
   script:
     - echo "hello, world"
 <<<<<<< HEAD
+<<<<<<< HEAD
+    - echo "bonjour, monde"
+=======
+>>>>>>> c424feb... Clean .gitlab-ci.yml
     - echo "bonjour, monde"
 =======
 >>>>>>> c424feb... Clean .gitlab-ci.yml
