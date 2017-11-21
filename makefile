@@ -1,13 +1,14 @@
-.PHONY: clean pythran
+all: helloworld pythran
 
-all: C pythran
+helloworld:
+	gcc helloworld.c -o helloworld.e
 
-C:
-	  gcc helloworld.c -o helloworld.e
+test: helloworld
+	python test_helloworld.py
 
 pythran:
-	  pythran rosenbrock.py -o rosenbrock_pythran.so
+	pythran rosenbrock.py -o rosenbrock_pythran.so
 
 clean:
-	  rm -rf *.o *.e *.so *.pyf *.pyc __pycache__
+	rm -rf *.o *.e *.so *.pyf *.pyc __pycache__
 
