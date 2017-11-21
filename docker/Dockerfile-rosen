@@ -1,5 +1,4 @@
 FROM boileaum/pythran:latest
-MAINTAINER Matthieu Boileau <matthieu.boileau@math.unistra.fr>
 
 ENV HOME /home/euler
 ADD . $HOME/rosen
