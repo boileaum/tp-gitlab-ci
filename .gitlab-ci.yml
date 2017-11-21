@@ -3,8 +3,6 @@ pages:
     - pages, docker
   image: boileaum/debian-jupyter
   script:
-    - pip3 --no-cache-dir install bash_kernel
-    - python -m bash_kernel.install
     - mkdir public
     - ./make_slides.sh
   artifacts:
