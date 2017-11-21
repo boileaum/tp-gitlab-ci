@@ -1,6 +1,6 @@
 helloworld:
   tags:
-    - shell, specific
+    - shell
+    - specific
   script:
     - echo "hello, world"
-    - echo "bonjour, monde"
