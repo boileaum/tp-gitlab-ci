@@ -4,3 +4,10 @@ build_hello:
     - shell
   script:
     - make
+
+test_hello:
+  stage: test
+  tags:
+    - shell
+  script:
+    - make test
