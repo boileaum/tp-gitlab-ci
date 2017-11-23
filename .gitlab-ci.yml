@@ -1,10 +1,11 @@
 pages:
   tags:
     - pages, docker
-  image: boileaum/debian-jupyter
+  image: jupyter/minimal-notebook
   script:
     - mkdir public
     - ./make_slides.sh
+    - ./make_archive.sh
   artifacts:
     paths:
       - public
