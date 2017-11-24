@@ -1,6 +1,0 @@
-helloworld:
-  tags:
-    - shell
-    - tp-gitlab-ci
-  script:
-    - echo "hello, world"
