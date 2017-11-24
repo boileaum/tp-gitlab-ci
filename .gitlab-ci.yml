@@ -4,3 +4,4 @@ helloworld:
     - tp-gitlab-ci
   script:
     - echo "hello, world"
+    - echo "bonjour, monde"
