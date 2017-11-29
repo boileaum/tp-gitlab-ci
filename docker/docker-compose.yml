@@ -1,11 +1,6 @@
 version: '2'
 
 services:
-  virtualenv:
-    build:
-      context: ../
-      dockerfile: docker/Dockerfile-pythran-virtualenv
-    image: boileaum/pythran:virtualenv
 
   env:
     build:

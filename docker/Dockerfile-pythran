@@ -1,15 +1,18 @@
 FROM python:3
 MAINTAINER Matthieu Boileau <matthieu.boileau@math.unistra.fr>
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
 RUN apt-get update --fix-missing && \
       apt-get install -y \
+      python-dev \
       vim
 
 RUN apt-get clean && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN pip install --no-cache-dir virtualenv
+RUN pip install --no-cache-dir --upgrade pip
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
 RUN useradd -m -s /bin/bash  euler
 ENV HOME /home/euler
@@ -17,5 +20,8 @@ RUN chown -R euler:euler /home/euler
 USER euler
 WORKDIR $HOME
 
-CMD /bin/bash
+RUN virtualenv --python=/usr/bin/python2.7 $HOME/py27
+COPY requirements.txt ./
+RUN $HOME/py27/bin/pip install --no-cache-dir -r requirements.txt
 
+CMD /bin/bash
