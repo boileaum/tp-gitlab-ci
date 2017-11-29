@@ -34,6 +34,16 @@ t:rosen:
     - docker pull $CONTAINER_TEST_IMAGE
     - docker run $CONTAINER_TEST_IMAGE /bin/bash -c 'pytest -v'
 
+t:rosen-py36:
+  stage: test
+  image: boileaum/pythran:virtualenv
+  tags:
+    - shell, docker
+  script:
+    - source $HOME/py36/bin/activate 
+    - make clean && make
+    - pytest -v
+
 r:docker:
   stage: release
   tags:
