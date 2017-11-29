@@ -28,7 +28,7 @@ t:rosen:
 
 t:rosen-py36:
   stage: test
-  image: boileaum/pythran:virtualenv
+  image: boileaum/pythran:latest
   tags:
     - tp-gitlab-ci, docker
   script:
@@ -38,7 +38,7 @@ t:rosen-py36:
 
 t:rosen-py27:
   stage: test
-  image: boileaum/pythran:virtualenv
+  image: boileaum/pythran:latest
   tags:
     - shell, docker
   script:
