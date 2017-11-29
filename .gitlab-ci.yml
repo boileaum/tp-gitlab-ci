@@ -25,20 +25,11 @@ t:rosen:
     - docker pull $CONTAINER_TEST_IMAGE
     - docker run $CONTAINER_TEST_IMAGE /bin/bash -c 'pytest -v'
 
-t:rosen-py36:
-  stage: test
-  image: $CONTAINER_TEST_IMAGE
-  tags:
-    - shell, docker
-  script:
-    - make clean && make
-    - pytest -v
-
 t:rosen-py27:
   stage: test
   image: $CONTAINER_TEST_IMAGE
   tags:
-    - tp-gitlab-ci, docker
+    - tp-gitlab-ci, docker-exec
   script:
     - source /home/euler/py27/bin/activate 
     - make clean && make
