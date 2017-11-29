@@ -17,13 +17,14 @@ b:docker:
     - docker build --pull -t $CONTAINER_TEST_IMAGE -f ./docker/Dockerfile-rosen .
     - docker push $CONTAINER_TEST_IMAGE
 
-t:rosen:
+t:rosen-py36:
   stage: test
+  image: $CONTAINER_TEST_IMAGE
   tags:
-    - shell, docker
+    - tp-gitlab-ci, docker-exec
   script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker run $CONTAINER_TEST_IMAGE /bin/bash -c 'pytest -v'
+    - make clean && make
+    - pytest -v
 
 t:rosen-py27:
   stage: test
@@ -40,6 +41,7 @@ r:docker:
   tags:
     - shell, docker
   script:
+    - echo $DOCKERHUB_PASSWD | docker login -u $CONTAINER_USERNAME --password-stdin
     - docker pull $CONTAINER_TEST_IMAGE
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
