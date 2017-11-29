@@ -18,14 +18,6 @@ b:docker:
     - docker build --pull -t $CONTAINER_TEST_IMAGE -f ./docker/Dockerfile-rosen .
     - docker push $CONTAINER_TEST_IMAGE
 
-t:helloworld:
-  stage: test
-  tags:
-    - shell, docker
-  script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker run $CONTAINER_TEST_IMAGE /bin/bash -c 'python test_helloworld.py'
-
 t:rosen:
   stage: test
   tags:
@@ -47,7 +39,7 @@ t:rosen-py36:
 r:docker:
   stage: release
   tags:
-    - shell, docker
+    - tp-gitlab-ci, docker
   script:
     - docker pull $CONTAINER_TEST_IMAGE
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
