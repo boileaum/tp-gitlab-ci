@@ -7,8 +7,8 @@ variables:
   CONTAINER_TEST_IMAGE: boileaum/rosen:$CI_COMMIT_REF_NAME
   CONTAINER_RELEASE_IMAGE: boileaum/rosen:latest
 
-before_script:
-  - echo $DOCKERHUB_PASSWD | docker login -u boileaum --password-stdin
+#before_script:
+# - echo $DOCKERHUB_PASSWD | docker login -u boileaum --password-stdin
 
 b:docker:
   stage: build
@@ -33,6 +33,16 @@ t:rosen-py36:
     - shell, docker
   script:
     - source /home/euler/py36/bin/activate 
+    - make clean && make
+    - pytest -v
+
+t:rosen-py27:
+  stage: test
+  image: boileaum/pythran:virtualenv
+  tags:
+    - shell, docker
+  script:
+    - source /home/euler/py27/bin/activate 
     - make clean && make
     - pytest -v
 
