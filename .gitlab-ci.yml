@@ -29,7 +29,7 @@ t:rosen-py36:
   stage: test
   image: $CONTAINER_TEST_IMAGE
   tags:
-    - tp-gitlab-ci, docker
+    - shell, docker
   script:
     - make clean && make
     - pytest -v
@@ -38,7 +38,7 @@ t:rosen-py27:
   stage: test
   image: $CONTAINER_TEST_IMAGE
   tags:
-    - shell, docker
+    - tp-gitlab-ci, docker
   script:
     - source /home/euler/py27/bin/activate 
     - make clean && make
