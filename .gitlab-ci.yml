@@ -30,7 +30,7 @@ t:rosen-py36:
   stage: test
   image: boileaum/pythran:virtualenv
   tags:
-    - shell, docker
+    - tp-gitlab-ci, docker
   script:
     - source /home/euler/py36/bin/activate 
     - make clean && make
@@ -39,7 +39,7 @@ t:rosen-py36:
 r:docker:
   stage: release
   tags:
-    - tp-gitlab-ci, docker
+    - shell, docker
   script:
     - docker pull $CONTAINER_TEST_IMAGE
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
