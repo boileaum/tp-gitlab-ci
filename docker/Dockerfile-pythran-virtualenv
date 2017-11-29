@@ -1,0 +1,28 @@
+FROM python:3
+MAINTAINER Matthieu Boileau <matthieu.boileau@math.unistra.fr>
+
+RUN apt-get update --fix-missing && \
+      apt-get install -y \
+      python-dev \
+      vim
+
+RUN apt-get clean && \
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN pip install --no-cache-dir virtualenv
+RUN pip install --no-cache-dir --upgrade pip
+
+RUN useradd -m -s /bin/bash  euler
+ENV HOME /home/euler
+RUN chown -R euler:euler /home/euler
+USER euler
+WORKDIR $HOME
+
+COPY requirements.txt ./
+RUN virtualenv --python=/usr/local/bin/python3.6 $HOME/py36
+RUN $HOME/py36/bin/pip install --no-cache-dir -r requirements.txt
+
+RUN virtualenv --python=/usr/bin/python2.7 $HOME/py27
+RUN $HOME/py27/bin/pip install --no-cache-dir -r requirements.txt
+
+CMD /bin/bash

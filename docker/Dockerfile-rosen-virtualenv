@@ -1,0 +1,15 @@
+FROM boileaum/pythran:latest
+MAINTAINER Matthieu Boileau <matthieu.boileau@math.unistra.fr>
+
+ENV HOME /home/euler
+ADD . $HOME/rosen
+USER root
+#RUN chown -R euler:euler /home/euler
+WORKDIR $HOME/rosen
+USER euler
+RUN . $HOME/py36 && pythran --version
+
+RUN make clean && make
+
+CMD /bin/bash
+
