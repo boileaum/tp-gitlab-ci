@@ -1,10 +1,4 @@
-all: helloworld pythran
-
-helloworld:
-	gcc helloworld.c -o helloworld.e
-
-test: helloworld
-	python test_helloworld.py
+all: pythran
 
 pythran:
 	pythran rosenbrock.py -o rosenbrock_pythran.so

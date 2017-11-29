@@ -4,41 +4,44 @@ stages:
   - release
 
 variables:
-  CONTAINER_TEST_IMAGE: boileaum/rosen:$CI_COMMIT_REF_NAME
-  CONTAINER_RELEASE_IMAGE: boileaum/rosen:latest
-
-before_script:
-  - echo $DOCKERHUB_PASSWD | docker login -u boileaum --password-stdin
+  CONTAINER_USERNAME: boileaum
+  CONTAINER_TEST_IMAGE: $CONTAINER_USERNAME/rosen:$CI_COMMIT_REF_NAME
+  CONTAINER_RELEASE_IMAGE: $CONTAINER_USERNAME/rosen:latest
 
 b:docker:
   stage: build
   tags:
     - shell, docker
   script:
+    - echo $DOCKERHUB_PASSWD | docker login -u $CONTAINER_USERNAME --password-stdin
     - docker build --pull -t $CONTAINER_TEST_IMAGE -f ./docker/Dockerfile-rosen .
     - docker push $CONTAINER_TEST_IMAGE
 
-t:helloworld:
+t:rosen-py36:
   stage: test
+  image: $CONTAINER_TEST_IMAGE
   tags:
-    - shell, docker
+    - tp-gitlab-ci, docker-exec
   script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker run $CONTAINER_TEST_IMAGE /bin/bash -c 'python test_helloworld.py'
+    - make clean && make
+    - pytest -v
 
-t:rosen:
+t:rosen-py27:
   stage: test
+  image: $CONTAINER_TEST_IMAGE
   tags:
-    - shell, docker
+    - tp-gitlab-ci, docker-exec
   script:
-    - docker pull $CONTAINER_TEST_IMAGE
-    - docker run $CONTAINER_TEST_IMAGE /bin/bash -c 'pytest -v'
+    - source /home/euler/py27/bin/activate 
+    - make clean && make
+    - pytest -v
 
 r:docker:
   stage: release
   tags:
     - shell, docker
   script:
+    - echo $DOCKERHUB_PASSWD | docker login -u $CONTAINER_USERNAME --password-stdin
     - docker pull $CONTAINER_TEST_IMAGE
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
