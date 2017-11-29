@@ -4,17 +4,16 @@ stages:
   - release
 
 variables:
-  CONTAINER_TEST_IMAGE: boileaum/rosen:$CI_COMMIT_REF_NAME
-  CONTAINER_RELEASE_IMAGE: boileaum/rosen:latest
-
-#before_script:
-# - echo $DOCKERHUB_PASSWD | docker login -u boileaum --password-stdin
+  CONTAINER_USERNAME: boileaum
+  CONTAINER_TEST_IMAGE: $CONTAINER_USERNAME/rosen:$CI_COMMIT_REF_NAME
+  CONTAINER_RELEASE_IMAGE: $CONTAINER_USERNAME/rosen:latest
 
 b:docker:
   stage: build
   tags:
     - shell, docker
   script:
+    - echo $DOCKERHUB_PASSWD | docker login -u $CONTAINER_USERNAME --password-stdin
     - docker build --pull -t $CONTAINER_TEST_IMAGE -f ./docker/Dockerfile-rosen .
     - docker push $CONTAINER_TEST_IMAGE
 
@@ -28,17 +27,16 @@ t:rosen:
 
 t:rosen-py36:
   stage: test
-  image: boileaum/pythran:latest
+  image: $CONTAINER_TEST_IMAGE
   tags:
     - tp-gitlab-ci, docker
   script:
-    - source /home/euler/py36/bin/activate 
     - make clean && make
     - pytest -v
 
 t:rosen-py27:
   stage: test
-  image: boileaum/pythran:latest
+  image: $CONTAINER_TEST_IMAGE
   tags:
     - shell, docker
   script:
