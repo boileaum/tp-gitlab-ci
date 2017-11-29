@@ -32,7 +32,7 @@ t:rosen-py36:
   tags:
     - shell, docker
   script:
-    - source $HOME/py36/bin/activate 
+    - source /home/euler/py36/bin/activate 
     - make clean && make
     - pytest -v
 
