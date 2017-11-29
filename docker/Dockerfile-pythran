@@ -21,7 +21,7 @@ USER euler
 WORKDIR $HOME
 
 RUN virtualenv --python=/usr/bin/python2.7 $HOME/py27
-COPY requirements.txt ./
-RUN $HOME/py27/bin/pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt /tmp/
+RUN $HOME/py27/bin/pip install --no-cache-dir -r /tmp/requirements.txt
 
 CMD /bin/bash
