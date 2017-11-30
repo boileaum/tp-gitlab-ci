@@ -4,8 +4,8 @@ pages:
   image: jupyter/minimal-notebook
   script:
     - mkdir public
-    - ./make_slides.sh
-    - ./make_archive.sh
+    - ./scripts/make_slides.sh
+    - ./scripts/make_archive.sh
   artifacts:
     paths:
       - public
