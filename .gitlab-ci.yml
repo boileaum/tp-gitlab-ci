@@ -11,7 +11,8 @@ variables:
 b:docker:
   stage: build
   tags:
-    - shell, docker
+    - shell
+    - docker
   script:
     - echo $DOCKERHUB_PASSWD | docker login -u $DOCKERHUB_USERNAME --password-stdin
     - docker build --pull -t $CONTAINER_TEST_IMAGE -f ./docker/Dockerfile-rosen .
@@ -21,7 +22,8 @@ t:rosen-py36:
   stage: test
   image: $CONTAINER_TEST_IMAGE
   tags:
-    - tp-gitlab-ci, docker-exec
+    - tp-gitlab-ci
+    - docker-exec
   script:
     - make clean && make
     - pytest -v
@@ -30,7 +32,8 @@ t:rosen-py27:
   stage: test
   image: $CONTAINER_TEST_IMAGE
   tags:
-    - tp-gitlab-ci, docker-exec
+    - tp-gitlab-ci
+    - docker-exec
   script:
     - source /home/euler/py27/bin/activate 
     - make clean && make
@@ -39,7 +42,8 @@ t:rosen-py27:
 r:docker:
   stage: release
   tags:
-    - shell, docker
+    - shell
+    - docker
   script:
     - echo $DOCKERHUB_PASSWD | docker login -u $DOCKERHUB_USERNAME --password-stdin
     - docker pull $CONTAINER_TEST_IMAGE
