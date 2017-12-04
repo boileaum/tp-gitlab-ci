@@ -4,16 +4,16 @@ stages:
   - release
 
 variables:
-  CONTAINER_USERNAME: boileaum
-  CONTAINER_TEST_IMAGE: $CONTAINER_USERNAME/rosen:$CI_COMMIT_REF_NAME
-  CONTAINER_RELEASE_IMAGE: $CONTAINER_USERNAME/rosen:latest
+  REGISTRY_USERNAME: boileaum
+  CONTAINER_TEST_IMAGE: $REGISTRY_USERNAME/rosen:$CI_COMMIT_REF_NAME
+  CONTAINER_RELEASE_IMAGE: $REGISTRY_USERNAME/rosen:latest
 
 b:docker:
   stage: build
   tags:
     - shell, docker
   script:
-    - echo $DOCKERHUB_PASSWD | docker login -u $CONTAINER_USERNAME --password-stdin
+    - echo $DOCKERHUB_PASSWD | docker login -u $REGISTRY_USERNAME --password-stdin
     - docker build --pull -t $CONTAINER_TEST_IMAGE -f ./docker/Dockerfile-rosen .
     - docker push $CONTAINER_TEST_IMAGE
 
@@ -41,7 +41,7 @@ r:docker:
   tags:
     - shell, docker
   script:
-    - echo $DOCKERHUB_PASSWD | docker login -u $CONTAINER_USERNAME --password-stdin
+    - echo $DOCKERHUB_PASSWD | docker login -u $REGISTRY_USERNAME --password-stdin
     - docker pull $CONTAINER_TEST_IMAGE
     - docker tag $CONTAINER_TEST_IMAGE $CONTAINER_RELEASE_IMAGE
     - docker push $CONTAINER_RELEASE_IMAGE
