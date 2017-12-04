@@ -1,6 +1,7 @@
 pages:
   tags:
-    - docker-exec, tp-gitlab-ci
+    - docker-exec
+    - tp-gitlab-ci
   image: jupyter/minimal-notebook
   script:
     - mkdir public
