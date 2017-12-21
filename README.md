@@ -1,6 +1,6 @@
 # TP GitLab CI
 
-Le contenu de cette session pratique est publié sur cette [page](https://boileau.pages.math.unistra.fr/tp-gitlab-ci/).
+Le contenu de cette session pratique est publié sur cette [page](https://xstra-dev.pages.unistra.fr/tp-gitlab-ci/).
 
 ### Execution du notebook jupyter
 
